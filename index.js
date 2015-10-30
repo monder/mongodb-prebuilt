@@ -49,6 +49,9 @@ function start_server(opts, callback) {
 				opts.exit_callback(code);
 			}
 		});
+		child.stdout.on('error', function(err) {
+ 			debug('pipe error: %s', err);
+   		});
 		child.stderr.pipe(child.stdout);
 
 		var started = 0;
